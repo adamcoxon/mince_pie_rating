@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Home</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href=../static/css/bootstrap.min.css>
+
+</head>
+
+<body>
+{% include 'includes/navbar.html' %}
+<div class="container">
+    <h3>Welcome</h3>
+    <p>Welcome to the exhilarating world of the Annual Mince Pie Rating extravaganza! Are you ready to be the
+        ultimate judge of the most delectable mince pies in town? Join our merry community of pastry enthusiasts in
+        the quest for the perfect, crumbly, and oh-so-satisfying mince pie. Whether you're a seasoned mince pie
+        connoisseur or a curious newbie, this is your chance to cast your vote and savor the suspense as we unveil
+        the top-rated treats of the year.</p>
+
+    <p>Indulge your taste buds and play a part in shaping the ultimate mince pie hierarchy. Will the traditional
+        recipes reign supreme, or will a daring, innovative twist steal the spotlight? Don't miss out on the
+        excitement as we crunch the numbers and reveal the results that could make or break mince pie reputations!
+        Be part of the jolly festivity and let your taste buds guide you in this heartwarming journey of flavor,
+        texture, and, of course, a sprinkle of festive magic.</p>
+
+    <p>Join the mince pie revolution today! Rate your favorite mince pie and witness the unveiling of the coveted
+        winners. Dive into a world of flaky crusts, rich fillings, and the joy of a community bonded by the love of
+        this timeless holiday delight. Let the Annual Mince Pie Rating celebration begin!</p>
+
+    <!--    <div>-->
+
+    <!--    </div>-->
+    <h3>Current Scores</h3>
+<!--    <p><button onclick="sortTable()">Sort</button></p>-->
+    <table class="table table-striped table-bordered" width="100%" id="myTable">
+        <thead>
+        <tr>
+            <th scope="col">Times Rated</th>
+            <th scope="col">Average Rating</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Name</th>
+            <th scope="col">Cost</th>
+            <th scope="col">Alcohol</th>
+            <th scope="col">Amount in Box</th>
+            <th scope="col">Cost Per Pie</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for pie in pies %}
+        <tr>
+            <td>{{ pie.times_rated }}</td>
+            <td>{{ pie.rating }}</td>
+            <td>{{ pie.brand }}</td>
+            <td>{{ pie.name }}</td>
+            <td>{{ pie.cost }}</td>
+            <td>{{ pie.alcohol }}</td>
+            <td>{{ pie.amount_in_box }}</td>
+            <td>{{ pie.price_per_pie |floatformat:2}}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div>
+        <a class="btn btn-outline-secondary" href="rate" role="button">Click To Rate a Pie!</a>
+        <a class="btn btn-outline-secondary" role="button" onclick="sortTable()">Click to Sort Table</a>
+<!--        <button class="btn btn-outline-secondary"onclick="sortTable()">Click to Sort Table</button>-->
+    </div>
+</div>
+
+<script src="../../static/js/bootstrap.bundle.min.js"></script>
+<script src="../../static/js/table_sort.js"></script>
+</body>
+
+</html>

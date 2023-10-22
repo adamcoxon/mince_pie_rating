@@ -1,0 +1,23 @@
+[
+    {
+        "cost": 3.5,
+        "name": "Delicious Mince Pie",
+        "brand": "Mince Delights",
+        "alcohol": false,
+        "amount_in_box": 6
+    },
+    {
+        "cost": 3.5,
+        "name": "Delicious Mince",
+        "brand": "Mince Delights",
+        "alcohol": true,
+        "amount_in_box": 10
+    },
+    {
+        "cost": 2.0,
+        "name": "Own brand",
+        "brand": "Aldi",
+        "alcohol": true,
+        "amount_in_box": 6
+    }
+]

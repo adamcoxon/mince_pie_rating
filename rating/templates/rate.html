@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Rate</title>
+    <!--    &lt;!&ndash; CSS &ndash;&gt;-->
+    <!--    <link href="../../static/css/bootstrap.min.css" rel="stylesheet">-->
+    <!--    <link href="../../static/css/style.css" rel="stylesheet">-->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/css/style.css" rel="stylesheet">
+    <!-- FONT -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,200;1,300;1,400;1,500;1,600&display=swap"
+          rel="stylesheet">
+</head>
+<body>
+{% include 'includes/navbar.html' %}
+<!-- CONTAINER -->
+<div class="container align-items-center min-vh-100">
+    <div class="row g-0 justify-content-center">
+        <!-- TITLE -->
+        <div class="col-lg-3 offset-lg-1 mx-0 px-0">
+            <div id="title-container">
+                <img class="logo" src="../../static/images/mincepie.png" alt="logo">
+                <h3>Rate Me</h3>
+                <p>Follow the steps to rate the chosen mince pie.</p>
+            </div>
+        </div>
+        <!-- FORMS -->
+        <div class="col-lg-8 mx-0 px-0">
+            <div class="progress">
+                <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="50"
+                     class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar"
+                     style="width: 0"></div>
+            </div>
+            <div id="qbox-container">
+                <form class="needs-validation" id="form-wrapper" method="POST" name="form-wrapper"
+                      novalidate action="/rate/">
+                    {% csrf_token %}
+                    <!-- FORM STEPS HERE -->
+                    <div id="steps-container">
+                        <div class="step">
+                            <h4>Select the pie to rate</h4>
+                            <p>Please select the mince pie you wish to rate from the below options</p>
+                            <p>Some more instructions</p>
+<!--                            <div class="form-check ps-0 q-box">-->
+<!--                                <select class="form-select" name="pie_name" aria-label="Default select example">-->
+<!--                                    <option selected>Click here to select</option>-->
+<!--                                    {% for pie in pies %}-->
+<!--                                    <option value="{{ pie.name }}">{{ pie.brand }} - {{ pie.name }}-->
+<!--                                    </option>-->
+<!--                                    {% endfor %}-->
+<!--                                </select>-->
+<!--                            </div>-->
+                        </div>
+                        <div class="step">
+                            <h4>Select the pie to rate</h4>
+                            <p>Please select the mince pie you wish to rate from the below options</p>
+
+                            <div class="form-check ps-0 q-box">
+                                <select class="form-select" name="pie_name" aria-label="Default select example">
+                                    <option selected>Click here to select</option>
+                                    {% for pie in pies %}
+                                    <option value="{{ pie.name }}">{{ pie.brand }} - {{ pie.name }}
+                                    </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        {% for q in questions %}
+                        <div class="step">
+                            <h4>{{ q.question }}</h4>
+                            <p>{{ q.supporting_comment }}</p>
+                            <div class="form-check ps-0 q-box">
+                                {% for l in likert %}
+                                <div class="q-box__question">
+                                    <input class="form-check-input" type="radio" name="{{ q.short_form }}" id="{{ l.rating }}" value="{{ l.rating }}">
+                                    <label class="form-check-label" for="{{ l.rating }}">{{ l.display }}</label>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <div class="step">
+                            <div class="mt-1">
+                                <div class="closing-text">
+                                    <h4>That's about it!</h4>
+                                    <p>Please double check your answers and, once happy, click the
+                                        <strong>Submit</strong> button to submit your rating</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="success">
+                            <div class="mt-5">
+                                <h4>Success! We&quot;ll get back to you ASAP!</h4>
+                                <p>Some text here about the submission</p>
+                                <a class="back-link" href="/form">Go back to the beginning ➜</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="q-box__buttons">
+                        <button id="prev-btn" type="button">Previous</button>
+                        <button id="next-btn" type="button">Next</button>
+                        <button id="submit-btn" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="preloader-wrapper">
+    <div id="preloader"></div>
+    <div class="preloader-section section-left"></div>
+    <div class="preloader-section section-right"></div>
+</div>
+<script src="../../static/js/script.js"></script>
+</body>
+</html>
